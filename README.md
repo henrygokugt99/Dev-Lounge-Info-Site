@@ -1,2 +1,3 @@
 # Dev-Lounge-Info-Site
-This Repository have the code of website related to the information of Dev Lounge Community.
+For Now Please add your name.md file in /InfoDeveloper folder 
+We will soon start working on Website...
