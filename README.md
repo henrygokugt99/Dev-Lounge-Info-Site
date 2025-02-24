@@ -6,9 +6,6 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 
 ## `OWNER` 
 <a href="https://github.com/salmanytofficial"><img src="https://github.com/salmanytofficial.png" width="250" height="250" alt="Salman Ahmad"/></a>
-
----
-   ## 👑 `GitHub Stats`
 [![Salman Ahmad's GitHub stats](https://github-readme-stats.vercel.app/api?username=salmanytofficial&show_icons=true&theme=radical)](https://github.com/salmanytofficial)
 
 ## 🪪 `DEV-Lounge-ADMINS`
