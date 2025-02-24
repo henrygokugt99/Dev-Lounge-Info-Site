@@ -6,7 +6,10 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 <br><br>
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:87CEEB,100:87CEEB&height=180&section=header&text=Dev-Lounge%20WEBISTE&fontSize=38&fontColor=ffffff&fontFamily=Roboto&animation=twinkling" width="100%"/>
 
-## `OWNER` 
+<p align="center">
+  <h1 align="center">💫 OWNER 💫</h1>
+</p>
+
 <a href="https://github.com/salmanytofficial"><img src="https://github.com/salmanytofficial.png" width="250" height="250" alt="Salman Ahmad"/></a>
 [![Salman Ahmad's GitHub stats](https://github-readme-stats.vercel.app/api?username=salmanytofficial&show_icons=true&theme=radical)](https://github.com/salmanytofficial)
 
