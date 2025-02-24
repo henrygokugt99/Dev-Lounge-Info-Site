@@ -9,7 +9,7 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 [![Salman Ahmad's GitHub stats](https://github-readme-stats.vercel.app/api?username=salmanytofficial&show_icons=true&theme=radical)](https://github.com/salmanytofficial)
 
 ---
-<h1## 🪪 `DEV-Lounge-ADMINS`<h1/>
+<h1## 🪪 `DEV-Lounge-ADMINS`</h1>
 ---
 <a href="https://github.com/IRON-M4N"><img src="https://github.com/IRON-M4N.png" width="250" height="250" alt="IRON M4N"/></a>
 [![IRON-M4N's GitHub stats](https://github-readme-stats.vercel.app/api?username=IRON-M4N&show_icons=true&theme=radical)](https://github.com/IRON-M4N)
@@ -33,5 +33,13 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 ---
 <a href="https://github.com/InnoxentTech"><img src="https://github.com/InnoxentTech.png" width="250" height="250" alt="InnoxentTech"/></a>
 [![InnoxentTech's GitHub stats](https://github-readme-stats.vercel.app/api?username=InnoxentTech&show_icons=true&theme=radical)](https://github.com/InnoxentTech)
+
+---
+<a href="https://github.com/AliAryanTech"><img src="https://github.com/AliAryanTech.png" width="250" height="250" alt="AliAryanTech"/></a>
+[![AliAryanTech's GitHub stats](https://github-readme-stats.vercel.app/api?username=AliAryanTech&show_icons=true&theme=radical)](https://github.com/AliAryanTech)
+
+---
+<a href="https://github.com/BK9dev"><img src="https://github.com/BK9dev.png" width="250" height="250" alt="BK9dev"/></a>
+[![BK9dev's GitHub stats](https://github-readme-stats.vercel.app/api?username=BK9dev&show_icons=true&theme=radical)](https://github.com/BK9dev)
 
 ---
