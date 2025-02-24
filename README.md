@@ -7,26 +7,11 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 ## `OWNER` 
 <a href="https://github.com/salmanytofficial"><img src="https://github.com/salmanytofficial.png" width="250" height="250" alt="Salman Ahmad"/></a>
 
-
 ---
-   ## 🫵 `GitHub Stats or Contributors`
+   ## 👑 `GitHub Stats`
 [![Salman Ahmad's GitHub stats](https://github-readme-stats.vercel.app/api?username=salmanytofficial&show_icons=true&theme=radical)](https://github.com/salmanytofficial)
 
----
-[![maluki65's GitHub stats](https://github-readme-stats.vercel.app/api?username=maluki65&show_icons=true&theme=radical)](https://github.com/maluki65)
-
----
-[![udavinw's GitHub stats](https://github-readme-stats.vercel.app/api?username=udavinw&show_icons=true&theme=radical)](https://github.com/udavinw)
-
----
-[![Mulandii's GitHub stats](https://github-readme-stats.vercel.app/api?username=Mulandii&show_icons=true&theme=radical)](https://github.com/Mulandii)
-
----
-[![Famous-Tech's GitHub stats](https://github-readme-stats.vercel.app/api?username=Famous-Tech&show_icons=true&theme=radical)](https://github.com/Famous-Tech)
-
----
-[![haki-xerr's GitHub stats](https://github-readme-stats.vercel.app/api?username=haki-xerr&show_icons=true&theme=radical)](https://github.com/haki-xerr)
-
+## 🪪 `DEV-Lounge-ADMINS`
 ---
 <p align="center">
 <a href="https://github.com/IRON-M4N"><img src="https://github.com/IRON-M4N.png" width="250" height="250" alt="Salman Ahmad"/></a>
