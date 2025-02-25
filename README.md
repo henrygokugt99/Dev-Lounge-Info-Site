@@ -41,20 +41,12 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 [![Aeon-San's GitHub stats](https://github-readme-stats.vercel.app/api?username=Aeon-San&show_icons=true&theme=radical)](https://github.com/Aeon-San)
 
 ---
-<a href="https://github.com/MaherZubair"><img src="https://github.com/InnoxentTech.png" width="250" height="250" alt="MaherZubair"/></a>
-[![Maher Zubair's GitHub stats](https://github-readme-stats.vercel.app/api?username=MaherZubair&show_icons=true&theme=radical)](https://github.com/MaherZubair)
-
----
 <a href="https://github.com/AliAryanTech"><img src="https://github.com/AliAryanTech.png" width="250" height="250" alt="AliAryanTech"/></a>
 [![AliAryanTech's GitHub stats](https://github-readme-stats.vercel.app/api?username=AliAryanTech&show_icons=true&theme=radical)](https://github.com/AliAryanTech)
 
 ---
 <a href="https://github.com/BK9dev"><img src="https://github.com/BK9dev.png" width="250" height="250" alt="BK9dev"/></a>
 [![BK9dev's GitHub stats](https://github-readme-stats.vercel.app/api?username=BK9dev&show_icons=true&theme=radical)](https://github.com/BK9dev)
-
----
-<a href="https://github.com/STAR-KING0/"><img src="https://github.com/STAR-KING0.png" width="250" height="250" alt="STAR-KING0"/></a>
-[![STAR-KING0's GitHub stats](https://github-readme-stats.vercel.app/api?username=STAR-KING0&show_icons=true&theme=radical)](https://github.com/STAR-KING0)
 
 ---
 <a href="https://github.com/abrahamdw882"><img src="https://github.com/abrahamdw882.png" width="250" height="250" alt="abrahamdw882"/></a>
