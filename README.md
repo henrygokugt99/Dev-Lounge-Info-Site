@@ -41,8 +41,8 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 [![Aeon-San's GitHub stats](https://github-readme-stats.vercel.app/api?username=Aeon-San&show_icons=true&theme=radical)](https://github.com/Aeon-San)
 
 ---
-<a href="https://github.com/InnoxentTech"><img src="https://github.com/InnoxentTech.png" width="250" height="250" alt="InnoxentTech"/></a>
-[![InnoxentTech's GitHub stats](https://github-readme-stats.vercel.app/api?username=InnoxentTech&show_icons=true&theme=radical)](https://github.com/InnoxentTech)
+<a href="https://github.com/MaherZubair"><img src="https://github.com/InnoxentTech.png" width="250" height="250" alt="MaherZubair"/></a>
+[![Maher Zubair's GitHub stats](https://github-readme-stats.vercel.app/api?username=MaherZubair&show_icons=true&theme=radical)](https://github.com/MaherZubair)
 
 ---
 <a href="https://github.com/AliAryanTech"><img src="https://github.com/AliAryanTech.png" width="250" height="250" alt="AliAryanTech"/></a>
