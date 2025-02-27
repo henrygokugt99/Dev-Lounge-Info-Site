@@ -57,7 +57,4 @@ For Now Please add your **name.md** file in **/InfoDeveloper** folder <br>
 [![DitzDev's GitHub stats](https://github-readme-stats.vercel.app/api?username=DitzDev&show_icons=true&theme=radical)](https://github.com/DitzDev)
 <a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
 
----
-<a href="https://github.com/Dev-Muhammad-Ali"><img src="https://github.com/Dev-Muhammad-Ali.png" width="250" height="250" alt="abrahamdw882"/></a>
-[![DitzDev's GitHub stats](https://github-readme-stats.vercel.app/api?username=Dev-Muhammad-Ali&show_icons=true&theme=radical)](https://github.com/Dev-Muhammad-Ali)
-<a><img src='https://i.imgur.com/LyHic3i.gif'/></a>
+
