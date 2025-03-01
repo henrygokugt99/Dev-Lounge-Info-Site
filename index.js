@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('./database');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
@@ -15,6 +16,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files from the public directory (French: Servir les fichiers statiques du dossier public)
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Configuration du rate limiter
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // 5 requêtes maximum par fenêtre
+    message: {
+        error: 'Trop de tentatives. Veuillez réessayer dans 15 minutes.'
+    }
+});
+
+// Appliquer le rate limiting aux routes /api
+app.use('/api', limiter);
 
 // Main route that serves the index.html file (French: Route principale qui sert le fichier index.html)
 app.get('/', (req, res) => {
@@ -29,6 +42,14 @@ app.post('/api/applicants', async (req, res) => {
         // Required data validation (French: Vérification des données requises)
         if (!name || !email) {
             return res.status(400).json({ error: 'Nom et email sont requis' });
+        }
+
+        // Vérifier si l'email existe déjà
+        const emailExists = await db.checkExistingEmail(email);
+        if (emailExists) {
+            return res.status(409).json({ 
+                error: 'Vous avez déjà postulé avec cette adresse email'
+            });
         }
         
         const newApplicant = await db.addApplicant({

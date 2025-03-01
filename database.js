@@ -21,6 +21,7 @@ async function initDatabase() {
         expertise VARCHAR(200),
         experience INTEGER,
         message TEXT,
+        status VARCHAR(50) DEFAULT 'pending',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
@@ -32,33 +33,6 @@ async function initDatabase() {
     client.release();
   }
 }
-
-// Ajouter un nouveau candidat
-async function initDatabase() {
-    const client = await pool.connect();
-    try {
-      await client.query(`
-        CREATE TABLE IF NOT EXISTS applicants (
-          id SERIAL PRIMARY KEY,
-          name VARCHAR(100) NOT NULL,
-          email VARCHAR(100) NOT NULL UNIQUE,
-          whatsapp VARCHAR(50),
-          github VARCHAR(100),
-          expertise VARCHAR(200),
-          experience INTEGER,
-          message TEXT,
-          status VARCHAR(50) DEFAULT 'pending',
-          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-      `);
-      console.log('Table applicants créée ou déjà existante');
-    } catch (error) {
-      console.error('Erreur lors de la création de la table:', error);
-      throw error;
-    } finally {
-      client.release();
-    }
-  }
 
 // Récupérer tous les candidats
 async function getAllApplicants() {
@@ -117,9 +91,26 @@ async function addApplicant(applicantData) {
     }
 }
 
+async function checkExistingEmail(email) {
+  const client = await pool.connect();
+  try {
+    const result = await client.query(
+      'SELECT EXISTS(SELECT 1 FROM applicants WHERE email = $1)',
+      [email]
+    );
+    return result.rows[0].exists;
+  } catch (error) {
+    console.error('Erreur lors de la vérification de l\'email:', error);
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   initDatabase,
   addApplicant,
   getAllApplicants,
-  getApplicantById
+  getApplicantById,
+  checkExistingEmail
 };
