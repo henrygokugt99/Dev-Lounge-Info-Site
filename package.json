@@ -1,0 +1,30 @@
+{
+  "name": "dev-lounge",
+  "version": "1.0.0",
+  "description": "The official website of the Dev Lounge group.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Famous-Tech/Dev-Lounge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Famous-Tech/Dev-Lounge/issues"
+  },
+  "homepage": "https://github.com/Famous-Tech/Dev-Lounge#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.13.3"
+  }
+}
