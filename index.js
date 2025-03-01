@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Configuration du rate limiter
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // 5 requêtes maximum par fenêtre
+    max: 10, // 10 requêtes maximum par fenêtre (English Max: 10 requests per window)
     message: {
         error: 'Trop de tentatives. Veuillez réessayer dans 15 minutes.'
     }
@@ -44,7 +44,7 @@ app.post('/api/applicants', async (req, res) => {
         
         // Required data validation (French: Vérification des données requises)
         if (!name || !email) {
-            return res.status(400).json({ error: 'Nom et email sont requis' });
+            return res.status(400).json({ error: 'Nqme and Email are required' });
         }
 
         // Vérifier si l'email existe déjà
