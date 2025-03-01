@@ -10,6 +10,9 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// ✅ Fix: Trust the first proxy
+app.set('trust proxy', 1);
+
 // Middleware to parse JSON (French: Middleware pour parser le JSON)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
