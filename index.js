@@ -68,6 +68,11 @@ app.post('/api/applicants', async (req, res) => {
         res.status(500).json({ error: 'Server error while adding the applicant' });
     }
 });
+// Admin route
+// Route to serve the admin panel (French: Route pour servir le panneau d'administration)
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
 
 
 app.put('/api/applicants/:id/status', async (req, res) => {
