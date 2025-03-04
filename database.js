@@ -107,10 +107,28 @@ async function checkExistingEmail(email) {
   }
 }
 
+async function updateApplicantStatus(id, status) {
+  const client = await pool.connect();
+  try {
+    const result = await client.query(
+      'UPDATE applicants SET status = $1 WHERE id = $2 RETURNING *',
+      [status, id]
+    );
+    
+    return result.rows[0] || null;
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du statut:', error);
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   initDatabase,
   addApplicant,
   getAllApplicants,
   getApplicantById,
-  checkExistingEmail
+  checkExistingEmail,
+  updateApplicantStatus
 };
