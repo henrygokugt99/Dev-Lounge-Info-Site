@@ -83,29 +83,19 @@ app.put('/api/applicants/:id/status', async (req, res) => {
         const { id } = req.params;
         const { status } = req.body;
 
-        // Validate the status (French: Vérification du statut)
+        // Validate the status
         if (!['approved', 'rejected', 'pending'].includes(status)) {
             return res.status(400).json({ error: 'Statut invalide' });
         }
 
-        const client = await pool.connect();
-        try {
-            const result = await client.query(
-                'UPDATE applicants SET status = $1 WHERE id = $2 RETURNING *',
-                [status, id]
-            );
-
-            if (result.rows.length === 0) {
-                return res.status(404).json({ error: 'Candidat non trouvé' });
-            }
-
-            res.json({ success: true, applicant: result.rows[0] });
-        } catch (error) {
-            console.error('Erreur lors de la mise à jour du statut:', error);
-            res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du statut' });
-        } finally {
-            client.release();
+        // Use your db module instead of direct pool access
+        const updatedApplicant = await db.updateApplicantStatus(id, status);
+        
+        if (!updatedApplicant) {
+            return res.status(404).json({ error: 'Candidat non trouvé' });
         }
+
+        res.json({ success: true, applicant: updatedApplicant });
     } catch (error) {
         console.error('Erreur lors de la mise à jour du statut:', error);
         res.status(500).json({ error: 'Erreur serveur lors de la mise à jour du statut' });
