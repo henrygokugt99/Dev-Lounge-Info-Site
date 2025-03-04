@@ -348,6 +348,65 @@
             gap: 1rem;
         }
         
+        /* Console Log Display */
+        .console-display {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 10px;
+            font-family: monospace;
+            z-index: 1001;
+            display: none;
+        }
+        
+        .console-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #555;
+        }
+        
+        .console-body {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            padding: 2px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .log-entry-request {
+            color: #74b9ff;
+        }
+        
+        .log-entry-response {
+            color: #55efc4;
+        }
+        
+        .log-entry-error {
+            color: #fab1a0;
+        }
+        
+        .console-toggle {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #1e272e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .applicants-table {
@@ -452,6 +511,19 @@
             </div>
         </div>
     </div>
+    
+    <!-- Console Log Display -->
+    <div class="console-display" id="consoleDisplay">
+        <div class="console-header">
+            <span>Console Logs</span>
+            <button id="clearLogs">Clear</button>
+        </div>
+        <div class="console-body" id="consoleBody">
+            <!-- Console logs will appear here -->
+        </div>
+    </div>
+    
+    <button class="console-toggle" id="consoleToggle">Show Logs</button>
 
     <script>
         // API Base URL
@@ -473,12 +545,29 @@
         const applicantDetails = document.getElementById('applicantDetails');
         const modalApproveBtn = document.getElementById('modalApproveBtn');
         const modalRejectBtn = document.getElementById('modalRejectBtn');
+        const consoleDisplay = document.getElementById('consoleDisplay');
+        const consoleBody = document.getElementById('consoleBody');
+        const consoleToggle = document.getElementById('consoleToggle');
+        const clearLogs = document.getElementById('clearLogs');
         
         // Simple auth (for demo purposes only)
         const ADMIN_USERNAME = 'admin';
         const ADMIN_PASSWORD = 'password123';
         
         let currentApplicantId = null;
+        
+        // Console logging function
+        function logToConsole(message, type = 'info') {
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-entry-${type}`;
+            const timestamp = new Date().toLocaleTimeString();
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            consoleBody.appendChild(logEntry);
+            consoleBody.scrollTop = consoleBody.scrollHeight;
+            
+            // Also log to browser console
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
         
         // Event Listeners
         loginBtn.addEventListener('click', handleLogin);
@@ -488,30 +577,55 @@
         modalApproveBtn.addEventListener('click', () => updateApplicantStatus(currentApplicantId, 'approved'));
         modalRejectBtn.addEventListener('click', () => updateApplicantStatus(currentApplicantId, 'rejected'));
         
+        // Console toggle
+        consoleToggle.addEventListener('click', () => {
+            if (consoleDisplay.style.display === 'block') {
+                consoleDisplay.style.display = 'none';
+                consoleToggle.textContent = 'Show Logs';
+            } else {
+                consoleDisplay.style.display = 'block';
+                consoleToggle.textContent = 'Hide Logs';
+            }
+        });
+        
+        // Clear logs
+        clearLogs.addEventListener('click', () => {
+            consoleBody.innerHTML = '';
+            logToConsole('Logs cleared', 'info');
+        });
+        
         // Check if user is logged in
         function checkAuth() {
+            logToConsole('Checking authentication status', 'info');
             const isAuthenticated = localStorage.getItem('isAuthenticated');
             if (isAuthenticated === 'true') {
+                logToConsole('User is authenticated, showing dashboard', 'info');
                 showDashboard();
                 loadApplicants();
             } else {
+                logToConsole('User is not authenticated, showing login page', 'info');
                 showLoginPage();
             }
         }
         
         // Handle login
         function handleLogin() {
+            logToConsole(`Login attempt with username: ${username.value}`, 'request');
+            
             if (username.value === ADMIN_USERNAME && password.value === ADMIN_PASSWORD) {
+                logToConsole('Login successful', 'response');
                 localStorage.setItem('isAuthenticated', 'true');
                 showDashboard();
                 loadApplicants();
             } else {
+                logToConsole('Login failed: Invalid credentials', 'error');
                 loginError.style.display = 'block';
             }
         }
         
         // Handle logout
         function handleLogout() {
+            logToConsole('User logged out', 'info');
             localStorage.removeItem('isAuthenticated');
             showLoginPage();
         }
@@ -540,10 +654,16 @@
                     url += `?status=${status}`;
                 }
                 
+                logToConsole(`Fetching applicants from: ${url}`, 'request');
+                
                 const response = await fetch(url);
                 const applicants = await response.json();
                 
+                logToConsole(`API Response: ${applicants.length} applicants received`, 'response');
+                logToConsole(`Response data: ${JSON.stringify(applicants).substring(0, 200)}...`, 'response');
+                
                 if (applicants.length === 0) {
+                    logToConsole('No applicants found in response', 'info');
                     applicantsTableBody.innerHTML = '<tr><td colspan="6" class="loading">No applicants found</td></tr>';
                     return;
                 }
@@ -559,15 +679,29 @@
                         <td>${applicant.experience} years</td>
                         <td><span class="status status-${applicant.status}">${applicant.status}</span></td>
                         <td class="actions">
-                            <button class="action-btn view-btn" onclick="viewApplicant(${applicant.id})">View</button>
-                            <button class="action-btn approve-btn" onclick="updateApplicantStatus(${applicant.id}, 'approved')">Approve</button>
-                            <button class="action-btn reject-btn" onclick="updateApplicantStatus(${applicant.id}, 'rejected')">Reject</button>
+                            <button class="action-btn view-btn" data-id="${applicant.id}">View</button>
+                            <button class="action-btn approve-btn" data-id="${applicant.id}" data-action="approved">Approve</button>
+                            <button class="action-btn reject-btn" data-id="${applicant.id}" data-action="rejected">Reject</button>
                         </td>
                     `;
+                    
+                    // Add action listeners for the new row
                     applicantsTableBody.appendChild(row);
+                    
+                    // Add event listeners to buttons
+                    const viewBtn = row.querySelector('.view-btn');
+                    const approveBtn = row.querySelector('.approve-btn');
+                    const rejectBtn = row.querySelector('.reject-btn');
+                    
+                    viewBtn.addEventListener('click', () => viewApplicant(applicant.id));
+                    approveBtn.addEventListener('click', () => updateApplicantStatus(applicant.id, 'approved'));
+                    rejectBtn.addEventListener('click', () => updateApplicantStatus(applicant.id, 'rejected'));
                 });
+                
+                logToConsole('Applicants table populated successfully', 'info');
             } catch (error) {
                 console.error('Error fetching applicants:', error);
+                logToConsole(`Error fetching applicants: ${error.message}`, 'error');
                 applicantsTableBody.innerHTML = '<tr><td colspan="6" class="loading">Error loading applicants. Please try again.</td></tr>';
             }
         }
@@ -575,8 +709,13 @@
         // View applicant details
         async function viewApplicant(id) {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/applicants/${id}`);
+                const url = `${API_BASE_URL}/api/applicants/${id}`;
+                logToConsole(`Fetching applicant details from: ${url}`, 'request');
+                
+                const response = await fetch(url);
                 const applicant = await response.json();
+                
+                logToConsole(`API Response for applicant ID ${id}: ${JSON.stringify(applicant).substring(0, 200)}...`, 'response');
                 
                 currentApplicantId = applicant.id;
                 
@@ -629,8 +768,10 @@
                 `;
                 
                 openApplicantModal();
+                logToConsole(`Applicant details displayed in modal for ID: ${id}`, 'info');
             } catch (error) {
                 console.error('Error fetching applicant details:', error);
+                logToConsole(`Error fetching applicant details: ${error.message}`, 'error');
                 alert('Error loading applicant details. Please try again.');
             }
         }
@@ -638,24 +779,35 @@
         // Update applicant status
         async function updateApplicantStatus(id, status) {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/applicants/${id}/status`, {
+                const url = `${API_BASE_URL}/api/applicants/${id}/status`;
+                const payload = { status };
+                
+                logToConsole(`Updating applicant ${id} status to ${status}`, 'request');
+                logToConsole(`Request payload: ${JSON.stringify(payload)}`, 'request');
+                
+                const response = await fetch(url, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ status })
+                    body: JSON.stringify(payload)
                 });
                 
                 const result = await response.json();
                 
+                logToConsole(`API Response for status update: ${JSON.stringify(result)}`, 'response');
+                
                 if (result.success) {
+                    logToConsole(`Applicant ${id} status successfully updated to ${status}`, 'info');
                     closeApplicantModal();
                     loadApplicants();
                 } else {
+                    logToConsole(`Error updating applicant status: ${result.message || 'Unknown error'}`, 'error');
                     alert('Error updating applicant status. Please try again.');
                 }
             } catch (error) {
                 console.error('Error updating applicant status:', error);
+                logToConsole(`Error updating applicant status: ${error.message}`, 'error');
                 alert('Error updating applicant status. Please try again.');
             }
         }
@@ -663,11 +815,13 @@
         // Open applicant modal
         function openApplicantModal() {
             applicantModal.style.display = 'flex';
+            logToConsole('Applicant details modal opened', 'info');
         }
         
         // Close applicant modal
         function closeApplicantModal() {
             applicantModal.style.display = 'none';
+            logToConsole('Applicant details modal closed', 'info');
         }
         
         // When the user clicks anywhere outside of the modal content, close the modal
@@ -677,8 +831,28 @@
             }
         };
         
+        // Add click event simulation to test buttons
+        function simulateButtonClick() {
+            logToConsole('Testing button functionality...', 'info');
+            
+            // Create a test button to verify event binding
+            const testButton = document.createElement('button');
+            testButton.textContent = 'Test Button';
+            testButton.addEventListener('click', () => logToConsole('Test button clicked successfully', 'info'));
+            
+            // Simulate a click
+            const clickEvent = new Event('click');
+            testButton.dispatchEvent(clickEvent);
+            
+            logToConsole('Button functionality test complete', 'info');
+        }
+        
         // Initialize
-        checkAuth();
+        document.addEventListener('DOMContentLoaded', () => {
+            logToConsole('Application initialized', 'info');
+            checkAuth();
+            simulateButtonClick();
+        });
     </script>
 </body>
-  </html>
+</html>
