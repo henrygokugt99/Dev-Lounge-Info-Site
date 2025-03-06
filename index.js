@@ -6,6 +6,12 @@ const bodyParser = require('body-parser');
 const db = require('./database');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
+const { Pool } = require('pg'); // Fix: Correctly import Pool from pg
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL, // Fix: Use colon instead of equals
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false // Fix: Correctly close the object
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
