@@ -16,7 +16,14 @@ const pool = new Pool({
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(cors()); // Fix: Enable CORS
+// app.use(cors()); // Fix: Enable CORS for any origin
+
+// More control over requests
+ app.use(cors({
+    origin: '*', // Accepte toutes les origines
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Méthodes autorisées
+    allowedHeaders: ['Content-Type', 'Authorization'] // Headers autorisés
+}));
 
 // ✅ Fix: Trust the first proxy
 app.set('trust proxy', 1);
