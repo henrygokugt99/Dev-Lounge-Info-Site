@@ -1,6 +1,7 @@
 // Created by Famous-Tech 
 // Comments are in English and french if you can't understand, Goodbye !
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('./database');
@@ -15,6 +16,7 @@ const pool = new Pool({
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(cors()); // Fix: Enable CORS
 
 // ✅ Fix: Trust the first proxy
 app.set('trust proxy', 1);
